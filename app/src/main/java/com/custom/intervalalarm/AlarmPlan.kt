@@ -19,3 +19,4 @@ data class AlarmTime(
         return String.format("%02d:%02d %s", h, minute, amPm)
     }
 }
+
