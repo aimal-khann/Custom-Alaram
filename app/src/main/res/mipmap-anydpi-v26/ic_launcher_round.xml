@@ -3,3 +3,4 @@
     <background android:drawable="@android:color/holo_blue_dark" />
     <foreground android:drawable="@drawable/ic_launcher_foreground" />
 </adaptive-icon>
+
