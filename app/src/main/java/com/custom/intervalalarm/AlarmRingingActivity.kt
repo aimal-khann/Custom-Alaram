@@ -113,13 +113,12 @@ class AlarmRingingActivity : AppCompatActivity() {
             if (plan?.ringtoneUri != null) {
                 soundUri = Uri.parse(plan.ringtoneUri)
             }
-            if (soundUri == null) {
-                soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-                    ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
-            }
+            val finalSoundUri: Uri = soundUri
+                ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+                ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
 
             mediaPlayer = MediaPlayer().apply {
-                setDataSource(applicationContext, soundUri)
+                setDataSource(applicationContext, finalSoundUri)
                 setAudioAttributes(
                     AudioAttributes.Builder()
                         .setUsage(AudioAttributes.USAGE_ALARM)
