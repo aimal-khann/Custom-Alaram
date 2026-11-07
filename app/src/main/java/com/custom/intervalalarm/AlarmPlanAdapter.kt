@@ -3,6 +3,7 @@ package com.custom.intervalalarm
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.custom.intervalalarm.databinding.ItemAlarmPlanBinding
 import java.util.Date
@@ -43,10 +44,10 @@ class AlarmPlanAdapter(
             if (nextTrigger != null && plan.isEnabled) {
                 val dateText = DateFormat.format("EEE, MMM d, yyyy 'at' hh:mm a", Date(nextTrigger))
                 tvNextOccurrence.text = "Next: $dateText"
-                tvNextOccurrence.setTextColor(root.context.getColor(R.color.accentGreen))
+                tvNextOccurrence.setTextColor(ContextCompat.getColor(root.context, R.color.accentGreen))
             } else {
                 tvNextOccurrence.text = if (plan.isEnabled) "No upcoming alarms" else "Alarm is paused"
-                tvNextOccurrence.setTextColor(root.context.getColor(R.color.onSurfaceVariant))
+                tvNextOccurrence.setTextColor(ContextCompat.getColor(root.context, R.color.onSurfaceVariant))
             }
 
             // Remove listener before setting checked to avoid feedback loops

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.custom.intervalalarm.databinding.ActivityMainBinding
 import com.custom.intervalalarm.databinding.DialogCreateAlarmBinding
@@ -281,7 +282,7 @@ class MainActivity : AppCompatActivity() {
         if (upcomingMillis.isEmpty()) {
             val emptyTv = TextView(this).apply {
                 text = "No upcoming dates found."
-                setTextColor(getColor(R.color.onSurfaceVariant))
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.onSurfaceVariant))
             }
             previewBinding.layoutUpcomingList.addView(emptyTv)
         } else {
@@ -290,7 +291,7 @@ class MainActivity : AppCompatActivity() {
                 val tv = TextView(this).apply {
                     text = "${idx + 1}.  $formatted"
                     textSize = 15f
-                    setTextColor(getColor(R.color.onSurface))
+                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.onSurface))
                     setPadding(0, 10, 0, 10)
                 }
                 previewBinding.layoutUpcomingList.addView(tv)
