@@ -1,9 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.IntervalAlarm" parent="Theme.Material3.DayNight">
-        <item name="colorPrimary">#6200EE</item>
-        <item name="colorPrimaryVariant">#3700B3</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+    <style name="Base.Theme.IntervalAlarm" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/accentPurple</item>
+        <item name="colorOnPrimary">#000000</item>
+        <item name="colorSecondary">@color/accentCyan</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
     </style>
     <style name="Theme.IntervalAlarm" parent="Base.Theme.IntervalAlarm" />
 </resources>
-

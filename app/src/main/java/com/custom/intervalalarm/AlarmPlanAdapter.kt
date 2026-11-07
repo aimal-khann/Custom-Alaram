@@ -10,6 +10,8 @@ import java.util.Date
 class AlarmPlanAdapter(
     private val plans: MutableList<AlarmPlan>,
     private val onToggle: (AlarmPlan, Boolean) -> Unit,
+    private val onEdit: (AlarmPlan) -> Unit,
+    private val onPreviewDates: (AlarmPlan) -> Unit,
     private val onDelete: (AlarmPlan) -> Unit
 ) : RecyclerView.Adapter<AlarmPlanAdapter.PlanViewHolder>() {
 
@@ -26,27 +28,45 @@ class AlarmPlanAdapter(
         val plan = plans[position]
         with(holder.binding) {
             tvTitle.text = plan.title.ifBlank { "Interval Alarm" }
-            tvInterval.text = "Repeats every ${plan.intervalDays} days"
+            tvIntervalBadge.text = "Every ${plan.intervalDays} days"
 
+            // Times readout
             val timesStr = if (plan.times.isEmpty()) {
                 "No times configured"
             } else {
                 plan.times.joinToString(", ") { it.format() }
             }
-            tvTimes.text = "Times: $timesStr"
+            tvTimesList.text = "Times: $timesStr"
 
-            switchEnabled.isChecked = plan.isEnabled
-
+            // Next trigger preview
             val nextTrigger = AlarmScheduler.getNextTriggerTime(plan)
             if (nextTrigger != null && plan.isEnabled) {
                 val dateText = DateFormat.format("EEE, MMM d, yyyy 'at' hh:mm a", Date(nextTrigger))
-                tvNextRing.text = "Next: $dateText"
+                tvNextOccurrence.text = "Next: $dateText"
+                tvNextOccurrence.setTextColor(root.context.getColor(R.color.accentGreen))
             } else {
-                tvNextRing.text = if (plan.isEnabled) "No upcoming alarms" else "Alarm is off"
+                tvNextOccurrence.text = if (plan.isEnabled) "No upcoming alarms" else "Alarm is paused"
+                tvNextOccurrence.setTextColor(root.context.getColor(R.color.onSurfaceVariant))
             }
 
+            // Remove listener before setting checked to avoid feedback loops
+            switchEnabled.setOnCheckedChangeListener(null)
+            switchEnabled.isChecked = plan.isEnabled
             switchEnabled.setOnCheckedChangeListener { _, isChecked ->
                 onToggle(plan, isChecked)
+            }
+
+            // Card click & button handlers
+            cardContainer.setOnClickListener {
+                onEdit(plan)
+            }
+
+            btnEdit.setOnClickListener {
+                onEdit(plan)
+            }
+
+            btnSchedulePreview.setOnClickListener {
+                onPreviewDates(plan)
             }
 
             btnDelete.setOnClickListener {
@@ -55,4 +75,3 @@ class AlarmPlanAdapter(
         }
     }
 }
-

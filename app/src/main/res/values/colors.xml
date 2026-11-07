@@ -1,0 +1,18 @@
+<resources>
+    <color name="primary">#6750A4</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="primaryContainer">#EADDFF</color>
+    <color name="onPrimaryContainer">#21005D</color>
+    <color name="secondary">#625B71</color>
+    <color name="background">#141218</color>
+    <color name="surface">#1C1B1F</color>
+    <color name="surfaceVariant">#2B2930</color>
+    <color name="onSurface">#E6E1E5</color>
+    <color name="onSurfaceVariant">#CAC4D0</color>
+    <color name="cardBackground">#232228</color>
+    <color name="accentCyan">#4DD0E1</color>
+    <color name="accentPurple">#B388FF</color>
+    <color name="accentOrange">#FFB74D</color>
+    <color name="accentRed">#FF5252</color>
+    <color name="accentGreen">#69F0AE</color>
+</resources>
